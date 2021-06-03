@@ -1,9 +1,9 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React from 'react';
 import {View} from 'react-native';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <View
