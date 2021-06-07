@@ -1,7 +1,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
 class App extends React.Component {
   render() {
@@ -80,6 +80,72 @@ class App extends React.Component {
                 }}></View>
             </View>
           </View>
+        </View>
+
+        <View
+          style={{
+            height: 150,
+            width: '100%',
+            backgroundColor: '#aaf',
+            marginTop: 20,
+            flexDirection: 'row',
+            // justifyContent: 'center',
+            // justifyContent: 'space-between',
+            // justifyContent: 'space-around',
+            justifyContent: 'space-evenly',
+            // alignItems: 'center',
+            paddingTop: 40,
+          }}>
+          <View
+            style={{
+              height: 100,
+              width: '25%',
+              backgroundColor: 'white',
+              // marginRight: 20,
+              // marginTop: -20,
+            }}></View>
+
+          <View
+            style={{
+              height: 100,
+              width: '25%',
+              backgroundColor: 'black',
+              // marginLeft: 20,
+              // marginRight: 20,
+              // marginTop: 20,
+              // marginBottom: 20,
+            }}></View>
+
+          <View
+            style={{
+              height: 100,
+              width: '25%',
+              backgroundColor: 'yellow',
+            }}></View>
+        </View>
+
+        <View
+          style={{
+            height: 100,
+            width: '100%',
+            backgroundColor: '#fff',
+            alignItems: 'center',
+            justifyContent: 'center',
+            // paddingLeft: 20,
+          }}>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 18,
+              fontWeight: 'bold',
+              // fontStyle: 'italic',
+              color: 'red',
+            }}
+            numberOfLines={2}>
+            Intern class Intern classIntern class Intern class Intern class
+            Intern class Intern class Intern classIntern class Intern class
+            Intern class Intern class
+          </Text>
         </View>
       </View>
     );
