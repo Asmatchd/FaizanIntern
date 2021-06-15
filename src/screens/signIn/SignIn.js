@@ -34,24 +34,34 @@ export class SignIn extends React.Component {
           }}>
           <View
             style={{
-              backgroundColor: '#fff',
+              // backgroundColor: '#fff',
               flex: 1,
             }}>
             {/* back button */}
             <View
               style={{
-                backgroundColor: '#faf',
+                // backgroundColor: '#faf',
                 height: h('6%'),
                 justifyContent: 'center',
                 paddingLeft: w('3%'),
               }}>
-              <Icon name={'ios-arrow-back'} size={h('4%')} color={'#000'} />
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.goBack();
+                }}
+                style={{
+                  // backgroundColor: '#aaf',
+                  height: h('6%'),
+                  width: w('10%'),
+                }}>
+                <Icon name={'ios-arrow-back'} size={h('4%')} color={'#000'} />
+              </TouchableOpacity>
             </View>
             {/* top view */}
             <View
               style={{
                 height: h('20%'),
-                backgroundColor: '#aaf',
+                // backgroundColor: '#aaf',
                 alignItems: 'center',
                 justifyContent: 'flex-end',
                 paddingBottom: h('2%'),
@@ -68,7 +78,7 @@ export class SignIn extends React.Component {
             <View
               style={{
                 height: h('45%'),
-                backgroundColor: '#afa',
+                // backgroundColor: '#afa',
                 alignItems: 'center',
                 paddingBottom: h('2%'),
               }}>
@@ -202,7 +212,7 @@ export class SignIn extends React.Component {
             <View
               style={{
                 height: h('25.5%'),
-                backgroundColor: '#faf',
+                // backgroundColor: '#faf',
               }}>
               <View
                 style={{
@@ -213,7 +223,7 @@ export class SignIn extends React.Component {
                   style={{
                     height: h('7%'),
                     width: '90%',
-                    backgroundColor: '#a3a',
+                    // backgroundColor: '#a3a',
                     flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'flex-end',
@@ -226,6 +236,10 @@ export class SignIn extends React.Component {
                     Create
                   </Text>
                   <TouchableOpacity
+                    onPress={() => {
+                      this.props.navigation.navigate('Basics');
+                      // this.props.navigation.replace('Basics');
+                    }}
                     style={{
                       height: h('4%'),
                       width: w('15%'),
@@ -260,7 +274,7 @@ export class SignIn extends React.Component {
                 style={{
                   width: '100%',
                   height: h('8%'),
-                  backgroundColor: '#a6a',
+                  // backgroundColor: '#a6a',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>

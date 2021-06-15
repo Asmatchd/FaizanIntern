@@ -69,6 +69,57 @@ export class Buttons extends React.Component {
             style={{
               height: 50,
               width: '40%',
+              backgroundColor: 'red',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 10,
+            }}
+            onPress={() => {
+              this.props.navigation.navigate('Basics');
+            }}>
+            <Text
+              style={{
+                color: '#fff',
+              }}>
+              Basics
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              height: 50,
+              width: '40%',
+              backgroundColor: 'yellow',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 10,
+              // marginTop: 20,
+            }}
+            onPress={() => {
+              this.props.navigation.navigate('SignIn');
+            }}>
+            <Text
+              style={{
+                color: '#000',
+              }}>
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            marginTop: 20,
+          }}>
+          <TouchableOpacity
+            // disabled={true}
+            style={{
+              height: 50,
+              width: '40%',
               backgroundColor: '#faf',
               alignItems: 'center',
               justifyContent: 'center',
