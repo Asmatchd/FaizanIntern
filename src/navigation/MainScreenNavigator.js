@@ -11,14 +11,14 @@ export const MainScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Buttons"
-          component={Buttons}
+          name="SignIn"
+          component={SignIn}
           options={{headerShown: false}}
         />
 
         <Stack.Screen
-          name="SignIn"
-          component={SignIn}
+          name="Buttons"
+          component={Buttons}
           options={{headerShown: false}}
         />
 
