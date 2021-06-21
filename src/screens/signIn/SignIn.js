@@ -19,9 +19,13 @@ import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
+import {Avatar} from 'react-native-elements';
 export class SignIn extends React.Component {
   state = {
     showLoading: false,
+    img: '',
   };
 
   bottomView = () => (
@@ -170,6 +174,40 @@ export class SignIn extends React.Component {
     }, 5000);
   };
 
+  selectImage = () => {
+    const options = {
+      title: 'Select Image',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    /**
+     * The first arg is the options object for customization (it can also be null or omitted for default options),
+     * The second arg is the callback which sends object: response (more info in the API Reference)
+     */
+    launchCamera(options, response => {
+      if (response.didCancel) {
+        console.warn('User cancelled image picker');
+      } else if (response.error) {
+        console.warn('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.warn('User tapped custom button: ', response.customButton);
+      } else {
+        // actual URL of image
+        const source = {uri: response.assets[0].uri};
+
+        // actual data of image
+        // const source = response.data;
+
+        this.setState({
+          img: source,
+        });
+      }
+    });
+  };
+
   render() {
     return (
       <KeyboardAwareScrollView
@@ -217,7 +255,10 @@ export class SignIn extends React.Component {
                 justifyContent: 'flex-end',
                 paddingBottom: h('2%'),
               }}>
-              <View
+              {/* <TouchableOpacity
+                onPress={() => {
+                  this.selectImage();
+                }}
                 style={{
                   height: h('10%'),
                   width: h('10%'),
@@ -225,19 +266,38 @@ export class SignIn extends React.Component {
                   borderRadius: h('5%'),
                   alignItems: 'center',
                   justifyContent: 'center',
-                  paddingLeft: h('1%'),
                 }}>
                 <Image
-                  source={require('../../assets/user.png')}
+                  source={this.state.img}
+                  // Following method used to call image from internet instead of assets folder of project
+                  // source={{
+                  //   uri: 'https://images.indianexpress.com/2019/03/baby-sit-up.jpg',
+                  // }}
                   style={{
-                    height: h('5%'),
-                    width: h('5%'),
-                    resizeMode: 'contain',
-                    // resizeMode: 'cover',
+                    // height: h('5%'),
+                    // width: h('5%'),
+                    height: '100%',
+                    width: '100%',
+                    // resizeMode: 'contain',
+                    resizeMode: 'cover',
                     // resizeMode: 'repeat',
                   }}
+                  overflow={'hidden'}
                 />
-              </View>
+              </TouchableOpacity> */}
+
+              <Avatar
+                size="large"
+                rounded
+                title="MF"
+                onPress={() => {
+                  this.selectImage();
+                }}
+                containerStyle={{
+                  backgroundColor: '#0007',
+                }}
+                source={this.state.img}
+              />
               <Text
                 style={{
                   fontSize: h('3%'),
