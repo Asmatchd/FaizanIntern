@@ -96,7 +96,7 @@ export class Buttons extends React.Component {
               // marginTop: 20,
             }}
             onPress={() => {
-              this.props.navigation.navigate('SignIn');
+              this.props.navigation.navigate('SignUp');
             }}>
             <Text
               style={{
