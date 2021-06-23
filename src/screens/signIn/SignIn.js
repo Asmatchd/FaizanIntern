@@ -15,7 +15,7 @@ import {
 } from 'react-native-responsive-screen';
 
 import {Avatar} from 'react-native-elements';
-import {AppInput} from '../../components/AppInput';
+import {AppInput, AppBtn} from '../../components';
 export class SignIn extends React.Component {
   state = {
     showLoading: false,
@@ -134,6 +134,16 @@ export class SignIn extends React.Component {
                 icName={'lock-closed'}
                 placeholder={'Password'}
                 secureTextEntry
+              />
+
+              <AppBtn
+                txt={'Sign In'}
+                st={{
+                  marginTop: h('2%'),
+                }}
+                onPress={() => {
+                  console.warn('ok');
+                }}
               />
             </View>
           </View>

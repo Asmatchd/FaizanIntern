@@ -5,12 +5,18 @@ import {SignUp} from '../screens/signUp';
 import {Basics} from '../screens/basics';
 import {Buttons} from '../screens/buttons';
 import {SignIn} from '../screens/signIn';
+import {Dashboard} from '../screens/dashboard';
 const Stack = createStackNavigator();
 
 export const MainScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Dashboard"
+          component={Dashboard}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="SignIn"
           component={SignIn}
