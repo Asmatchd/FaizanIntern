@@ -6,6 +6,7 @@ import {Basics} from '../screens/basics';
 import {Buttons} from '../screens/buttons';
 import {SignIn} from '../screens/signIn';
 import {Dashboard} from '../screens/dashboard';
+import {List} from '../screens/list';
 const Stack = createStackNavigator();
 
 export const MainScreenNavigator = () => {
@@ -15,6 +16,12 @@ export const MainScreenNavigator = () => {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="List"
+          component={List}
           options={{headerShown: false}}
         />
         <Stack.Screen

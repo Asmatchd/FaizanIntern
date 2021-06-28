@@ -15,7 +15,7 @@ import {
 } from 'react-native-responsive-screen';
 
 import {Avatar} from 'react-native-elements';
-import {AppInput, AppBtn} from '../../components';
+import {AppInput, AppBtn, NavHeader} from '../../components';
 export class Dashboard extends React.Component {
   render() {
     return (
@@ -23,48 +23,11 @@ export class Dashboard extends React.Component {
         style={{
           flex: 1,
         }}>
-        <View
-          style={{
-            height: h('7%'),
-            backgroundColor: 'orange',
-            flexDirection: 'row',
-          }}>
-          <TouchableOpacity
-            style={{
-              height: h('7%'),
-              width: '15%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Icon name={'ios-arrow-back'} size={h('4%')} color={'#fff'} />
-          </TouchableOpacity>
-
-          <View
-            style={{
-              height: h('7%'),
-              width: '70%',
-              //   backgroundColor: '#a3a',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: h('2.5%'),
-              }}>
-              Dashboard
-            </Text>
-          </View>
-          <TouchableOpacity
-            style={{
-              height: h('7%'),
-              width: '15%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Icon name={'ios-arrow-forward'} size={h('4%')} color={'#fff'} />
-          </TouchableOpacity>
-        </View>
+        <NavHeader
+          leftIc={'list'}
+          title={'Dashboard'}
+          rightIc={'exit-outline'}
+        />
         <View
           style={{
             // backgroundColor: '#faf',
@@ -84,6 +47,9 @@ export class Dashboard extends React.Component {
                 justifyContent: 'center',
               }}>
               <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('List');
+                }}
                 style={{
                   height: '90%',
                   width: '80%',
