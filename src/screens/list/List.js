@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, FlatList, Text, TouchableOpacity} from 'react-native';
+import {View, FlatList, Text, TouchableOpacity, Textinput} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
@@ -21,36 +21,76 @@ export class List extends React.Component {
         gender: 'male',
       },
       {
-        name: 'Faizan',
+        name: 'Ali',
         status: 'intern',
         dob: '2000',
         age: '20',
       },
       {
-        name: 'Faizan',
+        name: 'Umer',
         status: 'intern',
         dob: '2000',
         age: '20',
       },
       {
-        name: 'Faizan',
+        name: 'Usman',
         status: 'intern',
         dob: '2000',
         age: '20',
       },
       {
-        name: 'Faizan',
+        name: 'Kamran',
         status: 'intern',
         dob: '2000',
         age: '20',
       },
       {
-        name: 'Faizan',
+        name: 'Nadeem',
         status: 'intern',
         dob: '2000',
         age: '20',
       },
     ],
+    filteredData: [
+      {
+        name: 'Faizan',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+        gender: 'male',
+      },
+      {
+        name: 'Ali',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+      },
+      {
+        name: 'Umer',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+      },
+      {
+        name: 'Usman',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+      },
+      {
+        name: 'Kamran',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+      },
+      {
+        name: 'Nadeem',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+      },
+    ],
+    searchData: '',
   };
 
   design = item => (
@@ -91,6 +131,16 @@ export class List extends React.Component {
     </TouchableOpacity>
   );
 
+  searchFilterFunction = text => {
+    const newData = this.state.data.filter(item => {
+      const itemData = `${item.name.toUpperCase()}`;
+      const textData = text.toUpperCase();
+
+      return itemData.indexOf(textData) > -1;
+    });
+    this.setState({filteredData: newData});
+  };
+
   render() {
     return (
       <View
@@ -104,12 +154,21 @@ export class List extends React.Component {
           }}
           title={'Flat List'}
         />
+
         <FlatList
-          data={this.state.data}
+          data={this.state.filteredData}
           renderItem={({item}) => this.design(item)}
           keyExtractor={index => {
             console.log(index);
           }}
+          ListHeaderComponent={() => (
+            <AppInput
+              // icName={'search'}
+              placeholder={'Search'}
+              onChangeText={text => this.searchFilterFunction(text)}
+            />
+          )}
+          // ListFooterComponent={() => <AppBtn txt={'Next'} />}
         />
       </View>
     );
