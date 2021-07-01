@@ -23,31 +23,31 @@ export class List extends React.Component {
       {
         name: 'Ali',
         status: 'intern',
-        dob: '2000',
+        dob: '2001',
         age: '20',
       },
       {
         name: 'Umer',
         status: 'intern',
-        dob: '2000',
+        dob: '2002',
         age: '20',
       },
       {
         name: 'Usman',
         status: 'intern',
-        dob: '2000',
+        dob: '2003',
         age: '20',
       },
       {
         name: 'Kamran',
         status: 'intern',
-        dob: '2000',
+        dob: '2004',
         age: '20',
       },
       {
         name: 'Nadeem',
         status: 'intern',
-        dob: '2000',
+        dob: '2005',
         age: '20',
       },
     ],
@@ -62,35 +62,34 @@ export class List extends React.Component {
       {
         name: 'Ali',
         status: 'intern',
-        dob: '2000',
+        dob: '2001',
         age: '20',
       },
       {
         name: 'Umer',
         status: 'intern',
-        dob: '2000',
+        dob: '2002',
         age: '20',
       },
       {
         name: 'Usman',
         status: 'intern',
-        dob: '2000',
+        dob: '2003',
         age: '20',
       },
       {
         name: 'Kamran',
         status: 'intern',
-        dob: '2000',
+        dob: '2004',
         age: '20',
       },
       {
         name: 'Nadeem',
         status: 'intern',
-        dob: '2000',
+        dob: '2005',
         age: '20',
       },
     ],
-    searchData: '',
   };
 
   design = item => (
@@ -131,9 +130,9 @@ export class List extends React.Component {
     </TouchableOpacity>
   );
 
-  searchFilterFunction = text => {
+  search = text => {
     const newData = this.state.data.filter(item => {
-      const itemData = `${item.name.toUpperCase()}`;
+      const itemData = `${item.name.toUpperCase()} ${item.dob.toUpperCase()}`;
       const textData = text.toUpperCase();
 
       return itemData.indexOf(textData) > -1;
@@ -154,6 +153,11 @@ export class List extends React.Component {
           }}
           title={'Flat List'}
         />
+        <AppInput
+          icName={'search'}
+          placeholder={'Search'}
+          onChangeText={text => this.search(text)}
+        />
 
         <FlatList
           data={this.state.filteredData}
@@ -161,14 +165,9 @@ export class List extends React.Component {
           keyExtractor={index => {
             console.log(index);
           }}
-          ListHeaderComponent={() => (
-            <AppInput
-              // icName={'search'}
-              placeholder={'Search'}
-              onChangeText={text => this.searchFilterFunction(text)}
-            />
-          )}
-          // ListFooterComponent={() => <AppBtn txt={'Next'} />}
+          ListHeaderComponent={() => <Text>This is header</Text>}
+          ListFooterComponent={() => <AppBtn txt={'Next'} />}
+          showsVerticalScrollIndicator={false}
         />
       </View>
     );
