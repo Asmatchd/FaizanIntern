@@ -90,6 +90,7 @@ export class List extends React.Component {
         age: '20',
       },
     ],
+    refreshing: false,
   };
 
   design = item => (
@@ -101,7 +102,6 @@ export class List extends React.Component {
         height: h('18%'),
         backgroundColor: '#faf',
         width: '100%',
-        marginBottom: h('1%'),
       }}>
       <Text
         style={{
@@ -140,6 +140,18 @@ export class List extends React.Component {
     this.setState({filteredData: newData});
   };
 
+  onRefresh = () => {
+    this.setState({refreshing: true}, () => {
+      this.loadData();
+    });
+  };
+
+  loadData = () => {
+    setTimeout(() => {
+      this.setState({refreshing: false});
+    }, 5000);
+  };
+
   render() {
     return (
       <View
@@ -160,14 +172,22 @@ export class List extends React.Component {
         />
 
         <FlatList
+          // inverted
           data={this.state.filteredData}
           renderItem={({item}) => this.design(item)}
-          keyExtractor={index => {
-            console.log(index);
-          }}
+          keyExtractor={(item, index) => index}
           ListHeaderComponent={() => <Text>This is header</Text>}
           ListFooterComponent={() => <AppBtn txt={'Next'} />}
           showsVerticalScrollIndicator={false}
+          refreshing={this.state.refreshing}
+          onRefresh={() => this.onRefresh()}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{
+                height: 10,
+              }}
+            />
+          )}
         />
       </View>
     );

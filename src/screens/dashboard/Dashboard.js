@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   ImageBackground,
   ActivityIndicator,
+  StatusBar,
+  SafeAreaView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -23,10 +25,15 @@ export class Dashboard extends React.Component {
         style={{
           flex: 1,
         }}>
+        <SafeAreaView />
+        <StatusBar backgroundColor={'#faf'} />
         <NavHeader
           leftIc={'list'}
           title={'Dashboard'}
           rightIc={'exit-outline'}
+          rightPressed={() => {
+            this.props.navigation.replace('SignUp');
+          }}
         />
         <View
           style={{

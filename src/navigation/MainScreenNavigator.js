@@ -6,7 +6,7 @@ import {Basics} from '../screens/basics';
 import {Buttons} from '../screens/buttons';
 import {SignIn} from '../screens/signIn';
 import {Dashboard} from '../screens/dashboard';
-import {Details, List} from '../screens/list';
+import {Details, List, ScrollTest} from '../screens/list';
 const Stack = createStackNavigator();
 
 export const MainScreenNavigator = () => {
@@ -27,6 +27,12 @@ export const MainScreenNavigator = () => {
         <Stack.Screen
           name="Details"
           component={Details}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="ScrollTest"
+          component={ScrollTest}
           options={{headerShown: false}}
         />
         <Stack.Screen
