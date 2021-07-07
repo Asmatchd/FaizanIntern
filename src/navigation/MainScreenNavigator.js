@@ -14,16 +14,21 @@ export const MainScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="List"
+          component={List}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name="List"
           component={List}
           options={{headerShown: false}}
-        />
+        /> */}
         <Stack.Screen
           name="Details"
           component={Details}

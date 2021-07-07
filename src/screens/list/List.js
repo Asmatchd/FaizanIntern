@@ -19,36 +19,85 @@ export class List extends React.Component {
         dob: '2000',
         age: '20',
         gender: 'male',
+        img: require('../../assets/1.jpg'),
       },
       {
         name: 'Ali',
         status: 'intern',
         dob: '2001',
         age: '20',
+        img: require('../../assets/2.jpg'),
       },
       {
         name: 'Umer',
         status: 'intern',
         dob: '2002',
         age: '20',
+        img: require('../../assets/3.jpg'),
       },
       {
         name: 'Usman',
         status: 'intern',
         dob: '2003',
         age: '20',
+        img: require('../../assets/1.jpg'),
       },
       {
         name: 'Kamran',
         status: 'intern',
         dob: '2004',
         age: '20',
+        img: require('../../assets/2.jpg'),
       },
       {
         name: 'Nadeem',
         status: 'intern',
         dob: '2005',
         age: '20',
+        img: require('../../assets/3.jpg'),
+      },
+      {
+        name: 'Faizan',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+        gender: 'male',
+        img: require('../../assets/1.jpg'),
+      },
+      {
+        name: 'Ali',
+        status: 'intern',
+        dob: '2001',
+        age: '20',
+        img: require('../../assets/2.jpg'),
+      },
+      {
+        name: 'Umer',
+        status: 'intern',
+        dob: '2002',
+        age: '20',
+        img: require('../../assets/3.jpg'),
+      },
+      {
+        name: 'Usman',
+        status: 'intern',
+        dob: '2003',
+        age: '20',
+        img: require('../../assets/1.jpg'),
+      },
+      {
+        name: 'Kamran',
+        status: 'intern',
+        dob: '2004',
+        age: '20',
+        img: require('../../assets/2.jpg'),
+      },
+      {
+        name: 'Nadeem',
+        status: 'intern',
+        dob: '2005',
+        age: '20',
+        img: require('../../assets/3.jpg'),
       },
     ],
     filteredData: [
@@ -58,36 +107,85 @@ export class List extends React.Component {
         dob: '2000',
         age: '20',
         gender: 'male',
+        img: require('../../assets/1.jpg'),
       },
       {
         name: 'Ali',
         status: 'intern',
         dob: '2001',
         age: '20',
+        img: require('../../assets/2.jpg'),
       },
       {
         name: 'Umer',
         status: 'intern',
         dob: '2002',
         age: '20',
+        img: require('../../assets/3.jpg'),
       },
       {
         name: 'Usman',
         status: 'intern',
         dob: '2003',
         age: '20',
+        img: require('../../assets/1.jpg'),
       },
       {
         name: 'Kamran',
         status: 'intern',
         dob: '2004',
         age: '20',
+        img: require('../../assets/2.jpg'),
       },
       {
         name: 'Nadeem',
         status: 'intern',
         dob: '2005',
         age: '20',
+        img: require('../../assets/3.jpg'),
+      },
+      {
+        name: 'Faizan',
+        status: 'intern',
+        dob: '2000',
+        age: '20',
+        gender: 'male',
+        img: require('../../assets/1.jpg'),
+      },
+      {
+        name: 'Ali',
+        status: 'intern',
+        dob: '2001',
+        age: '20',
+        img: require('../../assets/2.jpg'),
+      },
+      {
+        name: 'Umer',
+        status: 'intern',
+        dob: '2002',
+        age: '20',
+        img: require('../../assets/3.jpg'),
+      },
+      {
+        name: 'Usman',
+        status: 'intern',
+        dob: '2003',
+        age: '20',
+        img: require('../../assets/1.jpg'),
+      },
+      {
+        name: 'Kamran',
+        status: 'intern',
+        dob: '2004',
+        age: '20',
+        img: require('../../assets/2.jpg'),
+      },
+      {
+        name: 'Nadeem',
+        status: 'intern',
+        dob: '2005',
+        age: '20',
+        img: require('../../assets/3.jpg'),
       },
     ],
     refreshing: false,
@@ -99,34 +197,56 @@ export class List extends React.Component {
         this.props.navigation.navigate('Details', {navData: item});
       }}
       style={{
-        height: h('18%'),
-        backgroundColor: '#faf',
+        height: h('9%'),
+        // backgroundColor: '#faf',
         width: '100%',
+        flexDirection: 'row',
       }}>
-      <Text
+      <View
         style={{
-          fontSize: 20,
+          height: '100%',
+          width: '20%',
+          // backgroundColor: '#aaf',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-        Name : {item.name}
-      </Text>
-      <Text
+        <Avatar
+          size="medium"
+          rounded
+          title="MF"
+          containerStyle={{
+            backgroundColor: '#0007',
+          }}
+          source={item.img}
+        />
+      </View>
+      <View
         style={{
-          fontSize: 20,
+          height: '100%',
+          width: '80%',
+          // backgroundColor: '#a4a',
         }}>
-        Status :{item.status}
-      </Text>
-      <Text
-        style={{
-          fontSize: 20,
-        }}>
-        DOB :{item.dob}
-      </Text>
-      <Text
-        style={{
-          fontSize: 20,
-        }}>
-        Age :{item.age}
-      </Text>
+        <View
+          style={{
+            height: '60%',
+            // backgroundColor: '#aa3',
+            justifyContent: 'center',
+          }}>
+          <Text
+            style={{
+              fontSize: 18,
+            }}>
+            {item.name}
+          </Text>
+        </View>
+        <View
+          style={{
+            height: '40%',
+            // backgroundColor: '#ffa',
+          }}>
+          <Text>{item.status}</Text>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 
@@ -157,6 +277,7 @@ export class List extends React.Component {
       <View
         style={{
           flex: 1,
+          backgroundColor: '#fff',
         }}>
         <NavHeader
           leftIc={'ios-arrow-back'}
