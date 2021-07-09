@@ -19,14 +19,14 @@ import {
 } from 'react-native-responsive-screen';
 
 import {Avatar} from 'react-native-elements';
-import {AppInput, AppBtn, NavHeader} from '../../components';
+import {AppInput, AppBtn, NavHeader, CustomAlert} from '../../components';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const bg = require('../../assets/add.png');
 
 export class Dashboard extends React.Component {
   state = {
-    modalVisible: true,
+    modalVisible: false,
     one: '',
     two: '',
     three: '',
@@ -34,6 +34,10 @@ export class Dashboard extends React.Component {
     five: '',
     six: '',
     pressed: '',
+    alertVisible: false,
+    laterPressed: {},
+    noPressed: {},
+    yesPressed: {},
   };
 
   captureImage = () => {
@@ -211,6 +215,18 @@ export class Dashboard extends React.Component {
                 justifyContent: 'center',
               }}>
               <TouchableOpacity
+                onPress={() => {
+                  this.setState(
+                    {
+                      noPressed: () => this.setState({alertVisible: false}),
+                      laterPressed: () => console.warn('later pressed'),
+                      yesPressed: () => console.warn('yes pressed'),
+                    },
+                    () => {
+                      this.setState({alertVisible: true});
+                    },
+                  );
+                }}
                 style={{
                   height: '90%',
                   width: '80%',
@@ -226,7 +242,7 @@ export class Dashboard extends React.Component {
                     color: 'orange',
                     fontSize: h('3%'),
                   }}>
-                  FlatList
+                  Custom Alert
                 </Text>
               </TouchableOpacity>
             </View>
@@ -411,6 +427,13 @@ export class Dashboard extends React.Component {
             </View>
           </View>
         </Modal>
+
+        <CustomAlert
+          visible={this.state.alertVisible}
+          laterPressed={this.state.laterPressed}
+          noPressed={this.state.noPressed}
+          yesPressed={this.state.yesPressed}
+        />
       </View>
     );
   }
