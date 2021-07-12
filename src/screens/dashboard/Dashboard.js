@@ -38,6 +38,10 @@ export class Dashboard extends React.Component {
     laterPressed: {},
     noPressed: {},
     yesPressed: {},
+    txt: '',
+    btn1: '',
+    btn2: '',
+    btn3: '',
   };
 
   captureImage = () => {
@@ -135,6 +139,9 @@ export class Dashboard extends React.Component {
           rightPressed={() => {
             this.props.navigation.replace('SignUp');
           }}
+          leftPressed={() => {
+            this.props.navigation.openDrawer();
+          }}
         />
         <View
           style={{
@@ -218,9 +225,14 @@ export class Dashboard extends React.Component {
                 onPress={() => {
                   this.setState(
                     {
-                      noPressed: () => this.setState({alertVisible: false}),
-                      laterPressed: () => console.warn('later pressed'),
                       yesPressed: () => console.warn('yes pressed'),
+                      noPressed: () => console.warn('no pressed'),
+                      laterPressed: () => this.setState({alertVisible: false}),
+
+                      txt: 'Do you really want to exit?',
+                      btn1: 'Cancel',
+                      btn2: 'No',
+                      btn3: 'Yes',
                     },
                     () => {
                       this.setState({alertVisible: true});
@@ -433,6 +445,10 @@ export class Dashboard extends React.Component {
           laterPressed={this.state.laterPressed}
           noPressed={this.state.noPressed}
           yesPressed={this.state.yesPressed}
+          txt={this.state.txt}
+          btn1={this.state.btn1}
+          btn2={this.state.btn2}
+          btn3={this.state.btn3}
         />
       </View>
     );

@@ -74,7 +74,7 @@ export class CustomAlert extends React.Component {
                   style={{
                     marginLeft: h('2%'),
                   }}>
-                  Are you sure you want to exit this app....?
+                  {this.props.txt}
                 </Text>
               </View>
 
@@ -96,7 +96,7 @@ export class CustomAlert extends React.Component {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <Text>Later</Text>
+                  <Text>{this.props.btn1}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -110,7 +110,7 @@ export class CustomAlert extends React.Component {
                     borderLeftWidth: h('0.05%'),
                     borderRightWidth: h('0.05%'),
                   }}>
-                  <Text>No</Text>
+                  <Text>{this.props.btn2}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -122,7 +122,7 @@ export class CustomAlert extends React.Component {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <Text>Yes</Text>
+                  <Text>{this.props.btn3}</Text>
                 </TouchableOpacity>
               </View>
             </View>

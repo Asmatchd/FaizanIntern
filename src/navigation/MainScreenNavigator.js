@@ -5,14 +5,26 @@ import {SignUp} from '../screens/signUp';
 import {Basics} from '../screens/basics';
 import {Buttons} from '../screens/buttons';
 import {SignIn} from '../screens/signIn';
-import {Dashboard} from '../screens/dashboard';
+import {Dashboard, Settings} from '../screens/dashboard';
 import {Details, List, ScrollTest} from '../screens/list';
+import {DrawerNavigator} from './DrawerNavigator';
+import {SplashScreen} from '../screens/splashScreen';
 const Stack = createStackNavigator();
 
 export const MainScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DrawerNavigator"
+          component={DrawerNavigator}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
