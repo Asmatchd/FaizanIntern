@@ -14,7 +14,7 @@ export class SplashScreen extends React.Component {
   };
   checkUser = () => {
     setTimeout(() => {
-      this.props.navigation.replace('DrawerNavigator');
+      this.props.navigation.replace('TabNavigator');
     }, 3000);
   };
   render() {

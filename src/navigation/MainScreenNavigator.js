@@ -9,6 +9,7 @@ import {Dashboard, Settings} from '../screens/dashboard';
 import {Details, List, ScrollTest} from '../screens/list';
 import {DrawerNavigator} from './DrawerNavigator';
 import {SplashScreen} from '../screens/splashScreen';
+import {TabNavigator} from './TabNavigator';
 const Stack = createStackNavigator();
 
 export const MainScreenNavigator = () => {
@@ -20,16 +21,22 @@ export const MainScreenNavigator = () => {
           component={SplashScreen}
           options={{headerShown: false}}
         />
+
         <Stack.Screen
+          name="TabNavigator"
+          component={TabNavigator}
+          options={{headerShown: false}}
+        />
+        {/* <Stack.Screen
           name="DrawerNavigator"
           component={DrawerNavigator}
           options={{headerShown: false}}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           options={{headerShown: false}}
-        />
+        /> */}
 
         <Stack.Screen
           name="List"
