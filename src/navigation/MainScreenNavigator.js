@@ -10,12 +10,18 @@ import {Details, List, ScrollTest} from '../screens/list';
 import {DrawerNavigator} from './DrawerNavigator';
 import {SplashScreen} from '../screens/splashScreen';
 import {TabNavigator} from './TabNavigator';
+import {LearnCalendar} from '../screens/learnCalander';
 const Stack = createStackNavigator();
 
 export const MainScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="LearnCalendar"
+          component={LearnCalendar}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="SplashScreen"
           component={SplashScreen}
