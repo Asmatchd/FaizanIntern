@@ -258,6 +258,36 @@ export class Dashboard extends React.Component {
                 </Text>
               </TouchableOpacity>
             </View>
+            <View
+              style={{
+                // backgroundColor: '#aaf',
+                height: '30%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('LearnCalendar');
+                }}
+                style={{
+                  height: '90%',
+                  width: '80%',
+                  backgroundColor: '#fff',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: h('1%'),
+                  borderColor: 'orange',
+                  borderWidth: h('0.1%'),
+                }}>
+                <Text
+                  style={{
+                    color: 'orange',
+                    fontSize: h('3%'),
+                  }}>
+                  Learn Calendar
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
 

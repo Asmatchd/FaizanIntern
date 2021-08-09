@@ -20,12 +20,53 @@ import {
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {Avatar} from 'react-native-elements';
 export class SignUp extends React.Component {
   state = {
     showLoading: false,
     img: '',
+
+    name: '',
+    password: '',
+    email: '',
+    phone: '',
+    visits: 4,
+  };
+
+  storeData = () => {
+    const param = {
+      name: this.state.name,
+      password: this.state.password,
+      email: this.state.email,
+      phone: this.state.phone,
+      visits: this.state.visits,
+    };
+    AsyncStorage.setItem('userData', JSON.stringify(param), (err, data) => {
+      if (!err) {
+        console.warn('Done');
+      } else {
+        console.warn(err);
+      }
+    });
+  };
+
+  getData = () => {
+    AsyncStorage.getItem('userData', (error, data) => {
+      if (!error && data !== null) {
+        // const userData = JSON.parse(data);
+        console.warn('data is = ' + data);
+      } else {
+        console.warn('Error');
+      }
+    });
+  };
+
+  removeData = () => {
+    AsyncStorage.removeItem('userData', () => {
+      console.warn('Removed');
+    });
   };
 
   bottomView = () => (
@@ -59,9 +100,13 @@ export class SignUp extends React.Component {
             onPress={() => {
               // this.props.navigation.navigate('Basics');
               // this.props.navigation.replace('Basics');
-              this.setState({showLoading: true}, () => {
-                this.stop();
-              });
+              // this.setState({showLoading: true}, () => {
+              //   this.stop();
+              // });
+              // this.props.navigation.replace('TabNavigator');
+              // this.storeData();
+              this.getData();
+              // this.removeData();
             }}
             style={{
               height: h('4%'),
@@ -381,6 +426,9 @@ export class SignUp extends React.Component {
                   <Icon name={'person'} size={h('3%')} color={'black'} />
                 </View>
                 <TextInput
+                  onChangeText={name => {
+                    this.setState({name});
+                  }}
                   style={{
                     // backgroundColor: '#ffa',
                     width: '85%',
@@ -412,6 +460,9 @@ export class SignUp extends React.Component {
                   <Icon name={'lock-closed'} size={20} color={'black'} />
                 </View>
                 <TextInput
+                  onChangeText={password => {
+                    this.setState({password});
+                  }}
                   style={{
                     // backgroundColor: '#ffa',
                     width: '85%',
@@ -444,6 +495,9 @@ export class SignUp extends React.Component {
                   <Icon name={'ios-mail'} size={20} color={'black'} />
                 </View>
                 <TextInput
+                  onChangeText={email => {
+                    this.setState({email});
+                  }}
                   style={{
                     // backgroundColor: '#ffa',
                     width: '85%',
@@ -475,6 +529,9 @@ export class SignUp extends React.Component {
                   <Icon name={'call'} size={20} color={'black'} />
                 </View>
                 <TextInput
+                  onChangeText={phone => {
+                    this.setState({phone});
+                  }}
                   style={{
                     // backgroundColor: '#ffa',
                     width: '85%',
