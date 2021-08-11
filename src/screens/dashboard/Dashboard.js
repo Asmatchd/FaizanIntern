@@ -21,11 +21,13 @@ import {
 import {Avatar} from 'react-native-elements';
 import {AppInput, AppBtn, NavHeader, CustomAlert} from '../../components';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const bg = require('../../assets/add.png');
 
 export class Dashboard extends React.Component {
   state = {
+    title: '',
     modalVisible: false,
     one: '',
     two: '',
@@ -42,6 +44,17 @@ export class Dashboard extends React.Component {
     btn1: '',
     btn2: '',
     btn3: '',
+  };
+
+  componentDidMount = () => {
+    AsyncStorage.getItem('userData', (err, data) => {
+      if (!err && data !== null) {
+        const userData = JSON.parse(data);
+        this.setState({title: userData.name});
+      } else {
+        console.warn('Error');
+      }
+    });
   };
 
   captureImage = () => {
@@ -134,7 +147,7 @@ export class Dashboard extends React.Component {
         <StatusBar backgroundColor={'#faf'} />
         <NavHeader
           leftIc={'list'}
-          title={'Dashboard'}
+          title={this.state.title}
           rightIc={'exit-outline'}
           rightPressed={() => {
             this.props.navigation.replace('SignUp');

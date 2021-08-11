@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
@@ -21,7 +22,7 @@ import {
 } from 'react-native-responsive-screen';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import EmailValidator from 'email-validator';
 import {Avatar} from 'react-native-elements';
 export class SignUp extends React.Component {
   state = {
@@ -32,24 +33,48 @@ export class SignUp extends React.Component {
     password: '',
     email: '',
     phone: '',
-    visits: 4,
   };
 
   storeData = () => {
-    const param = {
-      name: this.state.name,
-      password: this.state.password,
-      email: this.state.email,
-      phone: this.state.phone,
-      visits: this.state.visits,
-    };
-    AsyncStorage.setItem('userData', JSON.stringify(param), (err, data) => {
-      if (!err) {
-        console.warn('Done');
+    let {name, email, phone, password} = this.state;
+
+    const validator = EmailValidator.validate(email);
+
+    let formattedEmail = email.toLowerCase().trim();
+
+    if (name === '' || password === '' || email === '' || phone === '') {
+      alert('All fields are required');
+    } else {
+      if (validator === true) {
+        if (password.length < 8) {
+          alert('Password must contain 8 characters');
+        } else {
+          if (phone.length < 11) {
+            alert('Phone must contain 11 Digits');
+          } else {
+            const param = {
+              name,
+              phone,
+              formattedEmail,
+              password,
+            };
+            AsyncStorage.setItem(
+              'userData',
+              JSON.stringify(param),
+              (err, data) => {
+                if (!err) {
+                  this.props.navigation.replace('TabNavigator');
+                } else {
+                  console.warn(err);
+                }
+              },
+            );
+          }
+        }
       } else {
-        console.warn(err);
+        alert('Please enter a valid Email');
       }
-    });
+    }
   };
 
   getData = () => {
@@ -104,8 +129,8 @@ export class SignUp extends React.Component {
               //   this.stop();
               // });
               // this.props.navigation.replace('TabNavigator');
-              // this.storeData();
-              this.getData();
+              this.storeData();
+              // this.getData();
               // this.removeData();
             }}
             style={{
@@ -437,7 +462,8 @@ export class SignUp extends React.Component {
                   placeholder={'Name'}
                 />
               </View>
-              {/* password */}
+
+              {/* phone */}
               <View
                 style={{
                   backgroundColor: '#fff',
@@ -457,19 +483,19 @@ export class SignUp extends React.Component {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <Icon name={'lock-closed'} size={20} color={'black'} />
+                  <Icon name={'call'} size={20} color={'black'} />
                 </View>
                 <TextInput
-                  onChangeText={password => {
-                    this.setState({password});
+                  onChangeText={phone => {
+                    this.setState({phone});
                   }}
                   style={{
                     // backgroundColor: '#ffa',
                     width: '85%',
                     height: '100%',
                   }}
-                  placeholder={'Password'}
-                  secureTextEntry
+                  placeholder={'Phone'}
+                  maxLength={11}
                 />
               </View>
               {/* email */}
@@ -504,9 +530,10 @@ export class SignUp extends React.Component {
                     height: '100%',
                   }}
                   placeholder={'Email'}
+                  autoCapitalize={'none'}
                 />
               </View>
-              {/* phone */}
+              {/* password */}
               <View
                 style={{
                   backgroundColor: '#fff',
@@ -526,18 +553,19 @@ export class SignUp extends React.Component {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
-                  <Icon name={'call'} size={20} color={'black'} />
+                  <Icon name={'lock-closed'} size={20} color={'black'} />
                 </View>
                 <TextInput
-                  onChangeText={phone => {
-                    this.setState({phone});
+                  onChangeText={password => {
+                    this.setState({password});
                   }}
                   style={{
                     // backgroundColor: '#ffa',
                     width: '85%',
                     height: '100%',
                   }}
-                  placeholder={'Phone'}
+                  placeholder={'Password'}
+                  secureTextEntry
                 />
               </View>
             </View>

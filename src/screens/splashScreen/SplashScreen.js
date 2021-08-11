@@ -1,12 +1,7 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {
-  widthPercentageToDP as w,
-  heightPercentageToDP as h,
-} from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {styles} from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class SplashScreen extends React.Component {
   componentDidMount = () => {
@@ -14,7 +9,13 @@ export class SplashScreen extends React.Component {
   };
   checkUser = () => {
     setTimeout(() => {
-      this.props.navigation.replace('TabNavigator');
+      AsyncStorage.getItem('userData', (err, data) => {
+        if (!err && data !== null) {
+          this.props.navigation.replace('TabNavigator');
+        } else {
+          this.props.navigation.replace('SignIn');
+        }
+      });
     }, 3000);
   };
   render() {

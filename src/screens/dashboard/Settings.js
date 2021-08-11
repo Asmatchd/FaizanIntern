@@ -6,8 +6,15 @@ import {
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class Settings extends React.Component {
+  removeData = () => {
+    AsyncStorage.removeItem('userData', () => {
+      this.props.navigation.replace('SignIn');
+    });
+  };
+
   render() {
     return (
       <View
@@ -43,7 +50,7 @@ export class Settings extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.replace('SignIn');
+            this.removeData();
           }}
           style={{
             // backgroundColor: '#aaf',
