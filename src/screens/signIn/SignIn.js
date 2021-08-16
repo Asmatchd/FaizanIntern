@@ -19,7 +19,7 @@ import {AppInput, AppBtn} from '../../components';
 export class SignIn extends React.Component {
   state = {
     showLoading: false,
-    phone: '+92',
+    phone: '',
   };
 
   loading = () => (
@@ -143,6 +143,16 @@ export class SignIn extends React.Component {
                 }}
                 onPress={() => {
                   console.warn('ok');
+                }}
+              />
+
+              <AppBtn
+                txt={'Sign Up'}
+                st={{
+                  marginTop: h('2%'),
+                }}
+                onPress={() => {
+                  this.props.navigation.navigate('SignUp');
                 }}
               />
             </View>

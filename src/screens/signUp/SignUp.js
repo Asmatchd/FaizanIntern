@@ -24,6 +24,8 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import EmailValidator from 'email-validator';
 import {Avatar} from 'react-native-elements';
+import {baseUrl, axiosInstance} from '../../services/Api';
+
 export class SignUp extends React.Component {
   state = {
     showLoading: false,
@@ -55,20 +57,38 @@ export class SignUp extends React.Component {
             const param = {
               name,
               phone,
-              formattedEmail,
+              email: formattedEmail,
               password,
             };
-            AsyncStorage.setItem(
-              'userData',
-              JSON.stringify(param),
-              (err, data) => {
-                if (!err) {
-                  this.props.navigation.replace('TabNavigator');
+
+            axiosInstance
+              .post(baseUrl + 'users/signUp', param)
+              .then(res => {
+                const data = res.data;
+                if (data.status === '200') {
+                  alert(
+                    'Account successfully created kindly sign in to your account',
+                  );
+                  this.props.navigation.replace('SignIn');
                 } else {
-                  console.warn(err);
+                  alert(data.msg);
                 }
-              },
-            );
+              })
+              .catch(err => {
+                console.warn(err);
+              });
+
+            // AsyncStorage.setItem(
+            //   'userData',
+            //   JSON.stringify(param),
+            //   (err, data) => {
+            //     if (!err) {
+            //       this.props.navigation.replace('TabNavigator');
+            //     } else {
+            //       console.warn(err);
+            //     }
+            //   },
+            // );
           }
         }
       } else {
