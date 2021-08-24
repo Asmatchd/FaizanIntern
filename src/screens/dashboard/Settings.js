@@ -24,6 +24,9 @@ export class Settings extends React.Component {
           justifyContent: 'center',
         }}>
         <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('AllUsers');
+          }}
           style={{
             // backgroundColor: '#aaf',
             alignItems: 'center',
@@ -33,7 +36,7 @@ export class Settings extends React.Component {
             borderBottomWidth: h('0.05%'),
             borderColor: 'red',
           }}>
-          <Text>Edit Profile</Text>
+          <Text>All Users</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

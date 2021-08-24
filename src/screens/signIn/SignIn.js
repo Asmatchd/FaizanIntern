@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
@@ -16,10 +17,51 @@ import {
 
 import {Avatar} from 'react-native-elements';
 import {AppInput, AppBtn} from '../../components';
+import {axiosInstance, baseUrl} from '../../services/Api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export class SignIn extends React.Component {
   state = {
     showLoading: false,
     phone: '',
+    password: '',
+  };
+
+  signIn = () => {
+    let {phone, password} = this.state;
+    if (phone.length < 11) {
+      alert('Phone must contain 11 digits');
+    } else {
+      if (password < 8) {
+        alert('Password must contain 8 digits');
+      } else {
+        let param = {phone, password};
+
+        axiosInstance
+          .post(baseUrl + 'users/signIn', param)
+          .then(res => {
+            const data = res.data;
+            if (data.status === '200') {
+              alert(data.msg);
+              AsyncStorage.setItem(
+                'userData',
+                JSON.stringify(data.data),
+                (err, data) => {
+                  if (!err) {
+                    this.props.navigation.replace('TabNavigator');
+                  } else {
+                    console.warn(err);
+                  }
+                },
+              );
+            } else {
+              alert(data.msg);
+            }
+          })
+          .catch(err => {
+            console.warn(err);
+          });
+      }
+    }
   };
 
   loading = () => (
@@ -127,10 +169,13 @@ export class SignIn extends React.Component {
                 placeholder={'Phone'}
                 keyboardType={'number-pad'}
                 value={this.state.phone}
-                maxLength={13}
+                maxLength={11}
               />
 
               <AppInput
+                onChangeText={password => {
+                  this.setState({password});
+                }}
                 icName={'lock-closed'}
                 placeholder={'Password'}
                 secureTextEntry
@@ -142,7 +187,7 @@ export class SignIn extends React.Component {
                   marginTop: h('2%'),
                 }}
                 onPress={() => {
-                  console.warn('ok');
+                  this.signIn();
                 }}
               />
 

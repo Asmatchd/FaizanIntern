@@ -36,6 +36,9 @@ export class Details extends React.Component {
             justifyContent: 'center',
           }}>
           <Text>Name: {this.state.userData.name}</Text>
+          <Text>Phone: {this.state.userData.phone}</Text>
+          <Text>Email: {this.state.userData.email}</Text>
+          <Text>Password: {this.state.userData.password}</Text>
           <Text>Status: {this.state.userData.status}</Text>
           <Text>DOB: {this.state.userData.dob}</Text>
           <Text>Age: {this.state.userData.age}</Text>

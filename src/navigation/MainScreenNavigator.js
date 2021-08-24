@@ -11,6 +11,7 @@ import {DrawerNavigator} from './DrawerNavigator';
 import {SplashScreen} from '../screens/splashScreen';
 import {TabNavigator} from './TabNavigator';
 import {LearnCalendar} from '../screens/learnCalander';
+import {AllUsers} from '../screens/allUsers';
 const Stack = createStackNavigator();
 
 export const MainScreenNavigator = () => {
@@ -23,11 +24,6 @@ export const MainScreenNavigator = () => {
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={{headerShown: false}}
-        />
         <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
@@ -70,11 +66,16 @@ export const MainScreenNavigator = () => {
           component={SignIn}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="SignUp"
           component={SignUp}
           options={{headerShown: false}}
-        /> */}
+        />
+        <Stack.Screen
+          name="AllUsers"
+          component={AllUsers}
+          options={{headerShown: false}}
+        />
 
         <Stack.Screen
           name="Buttons"
